@@ -1,24 +1,40 @@
+#!/usr/bin/env python3
+
 import collections
 import random
 
 class KeyValueStore:
     """ Distributed key value store
 
-        # Typical KV structure and data manipulation
+        TODO(@dain): <<TO BE REMOVED BEFORE ALPHA LAUNCH>>
 
+        # General <Key,Value> Store Implementation
+        #
         - [x] Ability to set a key and value
         - [x] Ability to retrieve a value via the key
         - [x] Ability to retrieve all keys
         - [x] Ability to get all values
         - [x] Ability to update a value by key
 
-        # Adding distribution
-        - [x] Ability to add a key and value, and it automatically adds URL to system as key
+        # Distributed <Key,Value> Store Integration
+        #
+        - [x] Ability to add a key and value, and it automatically adds URL to
+          system as key
             {
                 URL_HERE_TO_SERVER: {
                 }
             }
-        - [ ] Ability to store the data on the server - if there is a server in the key
+        - [ ] Ability to store the data on the server - the value should point
+          to a route with d structure
+        - [ ] Route should point to a controller method
+        - [ ] Controller method should save it to the DB (in this case redis)
+        - [ ] Consider abstracting the storage implementation to allow any store
+        - [ ] Abstract the code into a library for a few languages (python
+          first, ruby second)
+            - [ ] Library should contain all of the code above, and provide
+              clear instructions
+            - [ ] Allow to inheret from controller/storage model/etc so you can
+              easily override and provide custom functionality
     """
 
     SERVERS = [
@@ -63,6 +79,8 @@ class KeyValueStore:
         self.set(self.SERVERS[randomNumber], {
             key: value
         })
+
+# END OF FILE 
 
 v = KeyValueStore()
 v.set('a', 1)
